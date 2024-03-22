@@ -34,9 +34,9 @@ sealed class BottomNavItem(
     val route: String,
     val selectedIcon: Int,
 ) {
-    object HomeItems: BottomNavItem("home", R.drawable.house_solid)
-    object ActivityItems: BottomNavItem("activities", R.drawable.note_sticky_solid)
-    object Profile: BottomNavItem("profile", R.drawable.user_solid)
+    object HomeItems: BottomNavItem("home", R.drawable.building_regular)
+    object ActivityItems: BottomNavItem("activities", R.drawable.list_check_solid)
+    object Profile: BottomNavItem("profile", R.drawable.id_card_regular)
 
 }
 
@@ -46,7 +46,7 @@ fun NavController(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.AuthRoute.route
+        startDestination = Screen.AppRoute.route
     ) {
          //application navigation route before logging in
         navigation(startDestination = Screen.SignInScreen.route, route = Screen.AuthRoute.route){
