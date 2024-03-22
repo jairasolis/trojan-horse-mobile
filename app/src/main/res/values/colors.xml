@@ -21,5 +21,7 @@
     <color name="blacky">#414141</color>
     <color name="bg">#FAFAFA</color>
     <color name= "profile_texts">#606060</color>
+    <color name="dark_red">#981616</color>
+    <color name="dark_green">#3B5534</color>
 
 </resources>

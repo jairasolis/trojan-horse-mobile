@@ -383,7 +383,7 @@ fun AvailableClassroomsBox(
         items(10) {
             AvailableClassroomsBoxLayout(
                 modifier = Modifier,
-                isConditionTrue = true
+                isConditionTrue = false
             )
         }
     }
@@ -393,7 +393,9 @@ fun AvailableClassroomsBoxLayout(
     modifier: Modifier,
     isConditionTrue: Boolean
 ) {
-    val containerColor = if (isConditionTrue) Color.Red else Color.White
+    val containerColor = if (isConditionTrue) colorResource(id = R.color.dark_red) else colorResource(
+        id = R.color.dark_green
+    )
     Card(
         modifier = modifier
             .padding(bottom = 15.dp)
@@ -419,7 +421,7 @@ fun AvailableClassroomsBoxLayout(
                 Spacer(modifier = Modifier.height(150.dp))
                 CustomColorTitleText(
                     text = "PTC 404",
-                    color = R.color.black,
+                    color = R.color.white,
                     22,
                     FontWeight.Normal
                 )
