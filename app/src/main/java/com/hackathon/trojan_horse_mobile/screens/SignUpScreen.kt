@@ -52,14 +52,14 @@ fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
                 onValueChange = viewModel::onNameChanged,
                 title = "Name",
                 keyboardType = KeyboardType.Number,
-                errorMessage = "Must be in XX-XXXX-XXXXX format"
+                errorMessage = "Name must be min of 4 length"
             )
             EditText(
                 value = uiState.email,
                 onValueChange = viewModel::onEmailChanged,
                 title = "Email",
                 keyboardType = KeyboardType.Number,
-                errorMessage = "Must be in XX-XXXX-XXXXX format"
+                errorMessage = "Must be a valid email address"
             )
             EditText(
                 value = uiState.studentnum,
@@ -73,7 +73,7 @@ fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
                 onValueChange = viewModel::onSectionChanged,
                 title = "Section",
                 keyboardType = KeyboardType.Number,
-                errorMessage = ""
+                errorMessage = "Invalid Section"
             )
             Spacer(modifier = Modifier.height(5.dp))
 
@@ -82,6 +82,7 @@ fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
                 onValueChange = viewModel::onPasswordChanged,
                 title = "Password",
                 isError = false,
+                errorMessage = "Must match Confirm Password"
             )
 
             EditTextPassword(
@@ -89,6 +90,8 @@ fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
                 onValueChange = viewModel::onConfirmPasswordChanged,
                 title = "Confirm Password",
                 isError = false,
+                errorMessage = "Must match Password"
+
             )
 
 
@@ -98,11 +101,13 @@ fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
             RoundedButton(
                 text = stringResource(R.string.sign_in),
                 onClick = {
-//                    if (uiState.isFormValid) {
-//                        viewModel.signIn()
-//                    } else {
+                    if (uiState.isFormValid) {
+//                        viewModel.signIn
+                        navController.navigate(Screen.SignInScreen.route)
+
+                    } else {
 //                        showErrorDialog = true
-//                    }
+                    }
                 },
                 enabled = true,
 //                validation = {uiState.isFormValid},

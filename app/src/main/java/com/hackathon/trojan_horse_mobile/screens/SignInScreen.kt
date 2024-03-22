@@ -79,7 +79,8 @@ fun SignInScreen(navController: NavHostController, viewModel: SignInViewModel) {
                 text = stringResource(R.string.sign_in),
                 onClick = {
                     if (uiState.isFormValid) {
-                        viewModel.signIn()
+//                        viewModel.signIn()
+                        navController.navigate(Screen.AppRoute.route)
                     } else {
 
 //                        showErrorDialog = true
