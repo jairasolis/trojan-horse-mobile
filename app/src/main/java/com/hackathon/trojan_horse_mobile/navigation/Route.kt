@@ -68,7 +68,7 @@ fun NavController(navController: NavHostController) {
         }
     }
 }
-//
+
 //@Composable
 //fun determineStartDestination(): String {
 //    return if (AuthManager.isLoggedIn()) {

@@ -1,32 +1,49 @@
 package com.hackathon.trojan_horse_mobile.components
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -36,7 +53,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
@@ -47,13 +67,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.hackathon.trojan_horse_mobile.R
 import com.hackathon.trojan_horse_mobile.navigation.BottomNavItem
 import com.hackathon.trojan_horse_mobile.navigation.Screen
-
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 
 @Composable
@@ -338,5 +362,192 @@ fun CustomImageLogo(width: Int, height: Int, imageResourceID: Int, circleColor: 
             painter = painterResource(id = imageResourceID),
             contentDescription = "Image"
         )
+    }
+}
+
+// home feedbox
+@Composable
+fun AvailableClassroomsBox(
+) {
+    LazyColumn(contentPadding = PaddingValues(16.dp)) {
+        items(10) {
+            AvailableClassroomsBoxLayout(
+                modifier = Modifier,
+            )
+        }
+    }
+}
+@Composable
+fun AvailableClassroomsBoxLayout(
+    modifier: Modifier,
+) {
+
+    Card(
+        modifier = modifier
+            .padding(bottom = 15.dp)
+            .fillMaxWidth()
+            .height(240.dp),
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.white)
+        ),
+        elevation = CardDefaults.cardElevation(3.dp),
+    ) {
+        Box(
+            Modifier
+                .padding(10.dp)
+                .fillMaxSize(),
+        ){
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                horizontalAlignment = Alignment.Start
+            ){
+                Spacer(modifier = Modifier.height(150.dp))
+                CustomColorTitleText(
+                    text = "PTC 404",
+                    color = R.color.black,
+                    22,
+                    FontWeight.Normal
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun CustomColorTitleText(
+    text: String,
+    color: Int,
+    weight: Int,
+    fontWeight: FontWeight
+) {
+    Text(
+        text = text,
+        style = TextStyle(
+            fontSize = weight.sp,
+            fontWeight = fontWeight,
+            color = colorResource(id = color)
+        )
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Dropdown(
+//    onSelected: (String) -> Unit
+) {
+
+    var expanded by remember { mutableStateOf(false) }
+    val suggestions = listOf("ALL", "PTC BLDG", "ITS BLDG")
+
+    var selectedText by remember { mutableStateOf("") }
+
+    var textFieldSize by remember { mutableStateOf(Size.Zero) }
+
+    val icon = if (expanded)
+        Icons.Filled.KeyboardArrowUp
+    else
+        Icons.Filled.KeyboardArrowDown
+
+
+    Column(Modifier.padding(15.dp)) {
+        OutlinedTextField(
+            value = selectedText,
+            onValueChange = { },
+            modifier = Modifier
+                .width(190.dp)
+                .height(80.dp)
+                .onGloballyPositioned { coordinates ->
+                    //this value is used to assign to the Dropdown the same width
+                    textFieldSize = coordinates.size.toSize()
+                },
+            shape = RoundedCornerShape(10.dp),
+            label = { Text("SELECT BLDG") },
+            readOnly = true,
+            trailingIcon = {
+                Icon(icon, "contentDescription",
+                    Modifier.clickable { expanded = !expanded })
+            }
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier
+                .width(with(LocalDensity.current) { textFieldSize.width.toDp() })
+            ) {
+            suggestions.forEach { room ->
+
+                DropdownMenuItem(
+                    text = { Text(text = room) },
+                    onClick = {
+                        selectedText = room
+                        expanded = false
+                        Log.d("Selected Dropdown Item", room)
+//                        onSelected(room)
+                    }
+                )
+            }
+        }
+    }
+}
+
+
+// acts feedbox
+@Composable
+fun ActivitiesBox(
+) {
+    LazyColumn(contentPadding = PaddingValues(16.dp)) {
+        items(10) {
+            ActivitiesBoxLayout(
+                modifier = Modifier,
+            )
+        }
+    }
+}
+@Composable
+fun ActivitiesBoxLayout(
+    modifier: Modifier,
+) {
+
+    Card(
+        modifier = modifier
+            .padding(bottom = 15.dp)
+            .fillMaxWidth()
+            .wrapContentSize(),
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.white)
+        ),
+        elevation = CardDefaults.cardElevation(3.dp),
+    ) {
+        Box(
+            Modifier
+                .padding(10.dp)
+                .fillMaxSize(),
+        ){
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                horizontalAlignment = Alignment.Start
+            ){
+                Spacer(modifier = Modifier.height(20.dp))
+                CustomColorTitleText(
+                    text = "PTC 404",
+                    color = R.color.black,
+                    22,
+                    FontWeight.Medium
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                CustomColorTitleText(
+                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo nisi quis velit vestibulum, at hendrerit nulla finibus. Nulla facilisi. Vivamus ut magna vel risus scelerisque tincidunt. Proin euismod diam nec massa consectetur, ac aliquet justo tristique. Integer aliquam sapien nec libero consectetur, sit amet feugiat nunc ultricies.",
+                    color = R.color.black,
+                    22,
+                    FontWeight.Normal
+                )
+            }
+        }
     }
 }
