@@ -38,7 +38,7 @@ fun HomeScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             Row (
                 horizontalArrangement = Arrangement.Center,
@@ -55,7 +55,6 @@ fun HomeScreen(navController: NavHostController) {
                 Dropdown()
             }
             Column {
-                Spacer(modifier = Modifier.height(15.dp))
                 AvailableClassroomsBox()
             }
         }
