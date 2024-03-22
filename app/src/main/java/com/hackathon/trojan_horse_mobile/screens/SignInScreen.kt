@@ -1,5 +1,6 @@
 package com.hackathon.trojan_horse_mobile.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,9 +32,11 @@ import com.hackathon.trojan_horse_mobile.components.RoundedButton
 import com.hackathon.trojan_horse_mobile.components.TitleText
 import com.hackathon.trojan_horse_mobile.navigation.Screen
 import com.hackathon.trojan_horse_mobile.uistate.SignInState
+import com.hackathon.trojan_horse_mobile.viewmodel.SignInViewModel
 
 @Composable
-fun SignInScreen(navController: NavHostController) {
+fun SignInScreen(navController: NavHostController, viewModel: SignInViewModel) {
+    val uiState by viewModel.uiState.collectAsState()
 
 
     Surface(
@@ -50,8 +54,8 @@ fun SignInScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(40.dp))
 
             EditText(
-                value = "",
-                onValueChange = {},
+                value = uiState.email,
+                onValueChange = viewModel::onEmailChanged,
                 title = "Email",
                 keyboardType = KeyboardType.Number,
                 errorMessage = "Must be in XX-XXXX-XXXXX format"
@@ -60,8 +64,8 @@ fun SignInScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(5.dp))
 
             EditTextPassword(
-                value = "",
-                onValueChange = {},
+                value = uiState.password,
+                onValueChange = viewModel::onPasswordChanged,
                 title = "Password",
                 isError = false,
             )
@@ -74,11 +78,12 @@ fun SignInScreen(navController: NavHostController) {
             RoundedButton(
                 text = stringResource(R.string.sign_in),
                 onClick = {
-//                    if (uiState.isFormValid) {
-//                        viewModel.signIn()
-//                    } else {
+                    if (uiState.isFormValid) {
+                        viewModel.signIn()
+                    } else {
+
 //                        showErrorDialog = true
-//                    }
+                    }
                 },
                 enabled = true,
 //                validation = {uiState.isFormValid},
@@ -99,8 +104,8 @@ fun SignInScreen(navController: NavHostController) {
     }
 }
 
-@Preview
-@Composable
-fun SignInPrev() {
-    SignInScreen(navController = rememberNavController())
-}
+//@Preview
+//@Composable
+//fun SignInPrev() {
+//    SignInScreen(navController = rememberNavController())
+//}

@@ -14,6 +14,8 @@ import com.hackathon.trojan_horse_mobile.screens.ProfileScreen
 import com.hackathon.trojan_horse_mobile.screens.SignInScreen
 import com.hackathon.trojan_horse_mobile.screens.SignUpScreen
 import com.hackathon.trojan_horse_mobile.sharedprefs.AuthManager
+import com.hackathon.trojan_horse_mobile.viewmodel.SignInViewModel
+import com.hackathon.trojan_horse_mobile.viewmodel.SignUpViewModel
 
 sealed class Screen (val route: String) {
     object SignUpScreen: Screen("signup")
@@ -44,15 +46,15 @@ fun NavController(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.AppRoute.route
+        startDestination = Screen.AuthRoute.route
     ) {
          //application navigation route before logging in
         navigation(startDestination = Screen.SignInScreen.route, route = Screen.AuthRoute.route){
             composable(Screen.SignUpScreen.route) {
-                SignUpScreen(navController)
+                SignUpScreen(navController, SignUpViewModel(navController))
             }
             composable(Screen.SignInScreen.route) {
-                SignInScreen(navController)
+                SignInScreen(navController, SignInViewModel(navController))
             }
         }
         // application navigation route after successful log in

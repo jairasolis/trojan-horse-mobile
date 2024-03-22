@@ -9,7 +9,10 @@ import androidx.navigation.NavHostController
 import com.hackathon.trojan_horse_mobile.model.SignUp
 import com.hackathon.trojan_horse_mobile.navigation.Screen
 import com.hackathon.trojan_horse_mobile.repository.SignUpRepository
+import com.hackathon.trojan_horse_mobile.uistate.SignInState
 import com.hackathon.trojan_horse_mobile.uistate.SignUpState
+import com.hackathon.trojan_horse_mobile.validation.SignInValidation
+import com.hackathon.trojan_horse_mobile.validation.SignUpValidation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -21,23 +24,48 @@ class SignUpViewModel(private val navController: NavHostController): ViewModel()
     val uiState: StateFlow<SignUpState> = _uiState
     fun onNameChanged(name: String) {
         val uiState = _uiState.value.copy(name = name)
+        _uiState.value = uiState.updateValidationState()
     }
     fun onEmailChanged(email: String) {
         val uiState = _uiState.value.copy(email = email)
+        _uiState.value = uiState.updateValidationState()
+
     }
     fun onStudentNumChanged(studentnum: String) {
         val uiState = _uiState.value.copy(studentnum = studentnum)
+        _uiState.value = uiState.updateValidationState()
+
     }
 
     fun onSectionChanged(email: String) {
         val uiState = _uiState.value.copy(email = email)
+        _uiState.value = uiState.updateValidationState()
+
     }
     fun onPasswordChanged(password: String) {
         val uiState = _uiState.value.copy(password = password)
+        _uiState.value = uiState.updateValidationState()
     }
 
     fun onConfirmPasswordChanged(confirm_password: String) {
         val uiState = _uiState.value.copy(confirm_password = confirm_password)
+        _uiState.value = uiState.updateValidationState()
+
+    }
+
+    private fun SignUpState.updateValidationState(): SignUpState {
+        val isNameValid = SignUpValidation.isValid(name)
+        val isEmailValid = SignUpValidation.isEmailValid(email)
+        val isStudentNumValid = SignUpValidation.isIdNumberValid(studentnum)
+        val isSectionValid = SignUpValidation.isValid(section)
+        val isPasswordValid = SignUpValidation.isPasswordValid(password)
+        return copy(isFormValid =
+        isEmailValid
+                && isPasswordValid
+                && isNameValid
+                && isSectionValid
+                && isStudentNumValid
+        )
     }
     fun signUp() {
         val signUpData = SignUp(

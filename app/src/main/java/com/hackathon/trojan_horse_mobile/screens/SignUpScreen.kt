@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -25,9 +27,12 @@ import com.hackathon.trojan_horse_mobile.components.LogoImage
 import com.hackathon.trojan_horse_mobile.components.RoundedButton
 import com.hackathon.trojan_horse_mobile.components.TitleText
 import com.hackathon.trojan_horse_mobile.navigation.Screen
+import com.hackathon.trojan_horse_mobile.viewmodel.SignUpViewModel
 
 @Composable
-fun SignUpScreen(navController: NavHostController) {
+fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
+    val uiState by viewModel.uiState.collectAsState()
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = colorResource(id = R.color.background_color)
@@ -43,29 +48,29 @@ fun SignUpScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(40.dp))
 
             EditText(
-                value = "",
-                onValueChange = {},
+                value = uiState.name,
+                onValueChange = viewModel::onNameChanged,
                 title = "Name",
                 keyboardType = KeyboardType.Number,
                 errorMessage = "Must be in XX-XXXX-XXXXX format"
             )
             EditText(
-                value = "",
-                onValueChange = {},
+                value = uiState.email,
+                onValueChange = viewModel::onEmailChanged,
                 title = "Email",
                 keyboardType = KeyboardType.Number,
                 errorMessage = "Must be in XX-XXXX-XXXXX format"
             )
             EditText(
-                value = "",
-                onValueChange = {},
+                value = uiState.studentnum,
+                onValueChange = viewModel::onStudentNumChanged,
                 title = "Student Number",
                 keyboardType = KeyboardType.Number,
                 errorMessage = "Must be in XX-XXXX-XXXXX format"
             )
             EditText(
-                value = "",
-                onValueChange = {},
+                value = uiState.section,
+                onValueChange = viewModel::onSectionChanged,
                 title = "Section",
                 keyboardType = KeyboardType.Number,
                 errorMessage = "Must be in XX-XXXX-XXXXX format"
@@ -73,15 +78,15 @@ fun SignUpScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(5.dp))
 
             EditTextPassword(
-                value = "",
-                onValueChange = {},
+                value = uiState.password,
+                onValueChange = viewModel::onPasswordChanged,
                 title = "Password",
                 isError = false,
             )
 
             EditTextPassword(
-                value = "",
-                onValueChange = {},
+                value = uiState.confirm_password,
+                onValueChange = viewModel::onConfirmPasswordChanged,
                 title = "Confirm Password",
                 isError = false,
             )
@@ -117,8 +122,8 @@ fun SignUpScreen(navController: NavHostController) {
     }
 }
 
-@Preview
-@Composable
-fun SignUpPrev() {
-    SignUpScreen(navController = rememberNavController())
-}
+//@Preview
+//@Composable
+//fun SignUpPrev() {
+//    SignUpScreen(navController = rememberNavController())
+//}

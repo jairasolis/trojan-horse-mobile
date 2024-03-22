@@ -14,6 +14,7 @@ import com.hackathon.trojan_horse_mobile.network.apimodel.StudentDetailsResponse
 import com.hackathon.trojan_horse_mobile.repository.SignInRepository
 import com.hackathon.trojan_horse_mobile.sharedprefs.AuthManager
 import com.hackathon.trojan_horse_mobile.uistate.SignInState
+import com.hackathon.trojan_horse_mobile.validation.SignInValidation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -28,10 +29,18 @@ class SignInViewModel(private val navController: NavHostController): ViewModel()
 
     fun onEmailChanged(email: String) {
         val uiState = _uiState.value.copy(email = email)
+        _uiState.value = uiState.updateValidationState()
     }
 
     fun onPasswordChanged(password: String) {
         val uiState = _uiState.value.copy(password = password)
+        _uiState.value = uiState.updateValidationState()
+    }
+
+    private fun SignInState.updateValidationState(): SignInState {
+        val isIdNumberValid = SignInValidation.isEmailValid(email)
+        val isPasswordValid = SignInValidation.isPasswordValid(password)
+        return copy(isFormValid = isIdNumberValid && isPasswordValid)
     }
 
     fun signIn() {
