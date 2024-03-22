@@ -37,8 +37,8 @@ class SignUpViewModel(private val navController: NavHostController): ViewModel()
 
     }
 
-    fun onSectionChanged(email: String) {
-        val uiState = _uiState.value.copy(email = email)
+    fun onSectionChanged(section: String) {
+        val uiState = _uiState.value.copy(section = section)
         _uiState.value = uiState.updateValidationState()
 
     }

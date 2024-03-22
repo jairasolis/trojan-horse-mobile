@@ -73,7 +73,7 @@ fun SignUpScreen(navController: NavHostController, viewModel:SignUpViewModel) {
                 onValueChange = viewModel::onSectionChanged,
                 title = "Section",
                 keyboardType = KeyboardType.Number,
-                errorMessage = "Must be in XX-XXXX-XXXXX format"
+                errorMessage = ""
             )
             Spacer(modifier = Modifier.height(5.dp))
 
