@@ -34,9 +34,9 @@ sealed class BottomNavItem(
     val route: String,
     val selectedIcon: Int,
 ) {
-    object HomeItems: BottomNavItem("home", R.drawable.house_solid)
-    object ActivityItems: BottomNavItem("activities", R.drawable.note_sticky_solid)
-    object Profile: BottomNavItem("profile", R.drawable.user_solid)
+    object HomeItems: BottomNavItem("home", R.drawable.building_regular)
+    object ActivityItems: BottomNavItem("activities", R.drawable.list_check_solid)
+    object Profile: BottomNavItem("profile", R.drawable.id_card_regular)
 
 }
 

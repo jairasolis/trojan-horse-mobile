@@ -47,7 +47,7 @@ fun HomeScreen(navController: NavHostController) {
                 CustomColorTitleText(
                     text = "Classroom",
                     R.color.blacky,
-                    26,
+                    22,
                     fontWeight = FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.width(20.dp))
