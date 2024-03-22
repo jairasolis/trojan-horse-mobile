@@ -59,12 +59,14 @@ class SignUpViewModel(private val navController: NavHostController): ViewModel()
         val isStudentNumValid = SignUpValidation.isIdNumberValid(studentnum)
         val isSectionValid = SignUpValidation.isValid(section)
         val isPasswordValid = SignUpValidation.isPasswordValid(password)
+        val isConfirmPasswordValid = SignUpValidation.isConfirmPasswordValid(password, confirm_password)
         return copy(isFormValid =
         isEmailValid
                 && isPasswordValid
                 && isNameValid
                 && isSectionValid
                 && isStudentNumValid
+                && isConfirmPasswordValid
         )
     }
     fun signUp() {

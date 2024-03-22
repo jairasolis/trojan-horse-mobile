@@ -25,7 +25,7 @@ object SignUpValidation {
         return idNumberRegex.matches(idNumber)
     }
 
-    fun isConfirmPasswordValid(password: String, confirmPassword: String): Boolean {
-        return password == confirmPassword
+    fun isConfirmPasswordValid(password: String, confirm_password: String): Boolean {
+        return password == confirm_password
     }
 }
