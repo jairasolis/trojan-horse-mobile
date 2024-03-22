@@ -46,7 +46,7 @@ fun NavController(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.AuthRoute.route
+        startDestination = Screen.AppRoute.route
     ) {
          //application navigation route before logging in
         navigation(startDestination = Screen.SignInScreen.route, route = Screen.AuthRoute.route){

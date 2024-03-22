@@ -28,6 +28,7 @@ import com.hackathon.trojan_horse_mobile.components.CustomImage
 import com.hackathon.trojan_horse_mobile.components.CustomImageButton
 import com.hackathon.trojan_horse_mobile.components.ProfileBox
 import com.hackathon.trojan_horse_mobile.components.StaticProfile
+import com.hackathon.trojan_horse_mobile.navigation.Screen
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
@@ -54,7 +55,7 @@ fun ProfileScreen(navController: NavHostController) {
                         width = 30,
                         height = 30,
                         imageResourceID = R.drawable.arrow_right_from_bracket_solid,
-                        onClick = {Log.d("Logoutbt", "logout")}
+                        onClick = { navController.navigate(Screen.SignInScreen.route) }
                     )
                 }
 
