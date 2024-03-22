@@ -50,7 +50,12 @@ fun ProfileScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(20.dp))
                 Row {
                     Spacer(modifier = Modifier.width(310.dp))
-                    CustomImageButton(width = 30, height = 30, imageResourceID = R.drawable.arrow_right_from_bracket_solid, onClick = {Log.d("Logoutbt", "logout")})
+                    CustomImageButton(
+                        width = 30,
+                        height = 30,
+                        imageResourceID = R.drawable.arrow_right_from_bracket_solid,
+                        onClick = {Log.d("Logoutbt", "logout")}
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(50.dp))

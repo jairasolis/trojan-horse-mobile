@@ -2,6 +2,7 @@ package com.hackathon.trojan_horse_mobile.components
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -549,7 +550,7 @@ fun ActivitiesBoxLayout(
                     .padding(20.dp),
                 horizontalAlignment = Alignment.Start
             ){
-                Spacer(modifier = Modifier.height(20.dp))
+//                Spacer(modifier = Modifier.height(10.dp))
                 CustomColorTitleText(
                     text = "PTC 404",
                     color = R.color.blacky,
@@ -587,7 +588,8 @@ fun ProfileBox(
             containerColor = colorResource(R.color.whitee)
         ),
 //        elevation = CardDefaults.cardElevation(3.dp),
-//        border = BorderStroke(1.dp, colorResource(id = R.color.border_gray))
+//        border = BorderStroke(1.dp, colorResource(id = R.color.border_gray)),
+
     ) {
         Box(
             Modifier
