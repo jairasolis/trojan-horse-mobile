@@ -57,8 +57,8 @@ fun SignInScreen(navController: NavHostController, viewModel: SignInViewModel) {
                 value = uiState.email,
                 onValueChange = viewModel::onEmailChanged,
                 title = "Email",
-                keyboardType = KeyboardType.Number,
-                errorMessage = "Must be in XX-XXXX-XXXXX format"
+                keyboardType = KeyboardType.Text,
+                errorMessage = "Must be a valid email address"
             )
 
             Spacer(modifier = Modifier.height(5.dp))
