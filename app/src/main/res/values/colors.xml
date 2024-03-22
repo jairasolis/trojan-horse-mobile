@@ -20,5 +20,6 @@
     <color name="whitee">#F7FAFB</color>
     <color name="blacky">#414141</color>
     <color name="bg">#FAFAFA</color>
+    <color name= "profile_texts">#606060</color>
 
 </resources>

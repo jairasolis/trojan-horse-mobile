@@ -536,18 +536,156 @@ fun ActivitiesBoxLayout(
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomColorTitleText(
                     text = "PTC 404",
-                    color = R.color.black,
-                    22,
+                    color = R.color.blacky,
+                    20,
                     FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 CustomColorTitleText(
                     text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo nisi quis velit vestibulum, at hendrerit nulla finibus. Nulla facilisi. Vivamus ut magna vel risus scelerisque tincidunt. Proin euismod diam nec massa consectetur, ac aliquet justo tristique. Integer aliquam sapien nec libero consectetur, sit amet feugiat nunc ultricies.",
-                    color = R.color.black,
-                    22,
+                    color = R.color.blacky,
+                    16,
                     FontWeight.Normal
                 )
             }
+        }
+    }
+}
+
+
+@Composable
+fun ProfileBox(
+    name: String,
+    email: String,
+    studentId: String,
+    section: String
+
+
+    ) {
+    Card(
+        modifier = Modifier
+            .padding(start = 15.dp, end = 15.dp)
+            .wrapContentSize(),
+        shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(R.color.whitee)
+        ),
+//        elevation = CardDefaults.cardElevation(3.dp),
+//        border = BorderStroke(1.dp, colorResource(id = R.color.border_gray))
+    ) {
+        Box(
+            Modifier
+                .padding(20.dp)
+                .fillMaxSize(),
+
+        ) {
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    CustomColorTitleText(
+                        text = "Monica Villanueva",
+                        color = R.color.blacky,
+                        weight = 26,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
+                Column {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .padding(5.dp),
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(10.dp)
+                    ) {
+                        CustomColorTitleText(
+                            text = "Email",
+                            color = R.color.edit_text_gray,
+                            weight = 16,
+                            fontWeight = FontWeight.Normal
+                        )
+                        CustomColorTitleText(
+                            text = email,
+                            color = R.color.profile_texts,
+                            weight = 18,
+                            fontWeight = FontWeight.Normal
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        CustomColorTitleText(
+                            text = "Student ID",
+                            color = R.color.edit_text_gray,
+                            weight = 16,
+                            fontWeight = FontWeight.Normal
+                        )
+                        CustomColorTitleText(
+                            text = studentId,
+                            color = R.color.profile_texts,
+                            weight = 18,
+                            fontWeight = FontWeight.Normal
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        CustomColorTitleText(
+                            text = "Section",
+                            color = R.color.edit_text_gray,
+                            weight = 16,
+                            fontWeight = FontWeight.Normal
+                        )
+                        CustomColorTitleText(
+                            text = section,
+                            color = R.color.profile_texts,
+                            weight = 18,
+                            fontWeight = FontWeight.Normal
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+
+//                        CustomDivider(height = 2, width = 270, color = R.color.border_gray)
+
+                    }
+                }
+            }
+        }
+    }
+}
+// static profile
+@Composable
+fun StaticProfile() {
+    Card(
+        modifier = Modifier
+            .padding(start = 15.dp, end = 15.dp)
+            .width(150.dp)
+            .height(150.dp),
+        shape = RoundedCornerShape(500.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.blacky)
+        ),
+        elevation = CardDefaults.cardElevation(3.dp),
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.user_solid),
+                contentDescription = "user",
+                modifier = Modifier
+                    .height(60.dp)
+                    .width(60.dp)
+                    .padding(start = 10.dp),
+                tint = colorResource(id = R.color.user_icon)
+            )
         }
     }
 }
