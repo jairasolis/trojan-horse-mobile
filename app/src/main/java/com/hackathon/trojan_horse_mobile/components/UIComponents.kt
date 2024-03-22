@@ -391,6 +391,7 @@ fun AvailableClassroomsBox(
         items(10) {
             AvailableClassroomsBoxLayout(
                 modifier = Modifier,
+                isConditionTrue = true
             )
         }
     }
@@ -398,8 +399,9 @@ fun AvailableClassroomsBox(
 @Composable
 fun AvailableClassroomsBoxLayout(
     modifier: Modifier,
+    isConditionTrue: Boolean
 ) {
-
+    val containerColor = if (isConditionTrue) Color.Red else Color.White
     Card(
         modifier = modifier
             .padding(bottom = 15.dp)
@@ -407,7 +409,7 @@ fun AvailableClassroomsBoxLayout(
             .height(240.dp),
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(id = R.color.white)
+            containerColor = containerColor
         ),
         elevation = CardDefaults.cardElevation(5.dp),
     ) {
