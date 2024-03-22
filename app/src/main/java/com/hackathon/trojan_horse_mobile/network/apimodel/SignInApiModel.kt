@@ -7,4 +7,13 @@ data class SignInRequest(
 
 data class SignInResponse(
     val message: String,
+    val data: StudentData
+)
+
+data class StudentData(
+    val id: Int,
+    val name: String,
+    val studentnum: String,
+    val email: String,
+    val section: String
 )
