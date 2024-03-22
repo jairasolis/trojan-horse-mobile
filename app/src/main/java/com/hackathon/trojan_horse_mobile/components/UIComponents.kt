@@ -349,6 +349,22 @@ fun CustomImage(width: Int, height: Int, imageResourceID: Int) {
         contentDescription = "Image"
     )
 }
+@Composable
+fun CustomImageButton(width: Int, height: Int, imageResourceID: Int, onClick: () -> Unit) {
+
+    Button(onClick = onClick,
+        colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+    ) {
+        Image(
+            modifier = Modifier
+                .width(width.dp)
+                .height(height.dp)
+            ,
+            painter = painterResource(id = imageResourceID),
+            contentDescription = "Image"
+        )
+    }
+}
 
 @Composable
 fun CustomImageLogo(width: Int, height: Int, imageResourceID: Int, circleColor: Color) {
@@ -391,7 +407,7 @@ fun AvailableClassroomsBoxLayout(
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.white)
         ),
-        elevation = CardDefaults.cardElevation(3.dp),
+        elevation = CardDefaults.cardElevation(5.dp),
     ) {
         Box(
             Modifier
@@ -588,7 +604,7 @@ fun ProfileBox(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     CustomColorTitleText(
-                        text = "Monica Villanueva",
+                        text = name,
                         color = R.color.blacky,
                         weight = 26,
                         fontWeight = FontWeight.Normal
