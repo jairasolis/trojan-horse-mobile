@@ -13,6 +13,7 @@ import com.hackathon.trojan_horse_mobile.screens.HomeScreen
 import com.hackathon.trojan_horse_mobile.screens.ProfileScreen
 import com.hackathon.trojan_horse_mobile.screens.SignInScreen
 import com.hackathon.trojan_horse_mobile.screens.SignUpScreen
+import com.hackathon.trojan_horse_mobile.sharedprefs.AuthManager
 
 sealed class Screen (val route: String) {
     object SignUpScreen: Screen("signup")
