@@ -75,6 +75,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.hackathon.trojan_horse_mobile.R
 import com.hackathon.trojan_horse_mobile.navigation.BottomNavItem
 import com.hackathon.trojan_horse_mobile.navigation.Screen
+import com.hackathon.trojan_horse_mobile.network.apimodel.Activities
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -514,11 +515,13 @@ fun Dropdown(
 // acts feedbox
 @Composable
 fun ActivitiesBox(
-) {
+//    activities: Activities,
+    ) {
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
         items(10) {
             ActivitiesBoxLayout(
-                modifier = Modifier,
+                modifier = Modifier
+//                activities = activities
             )
         }
     }
@@ -526,6 +529,7 @@ fun ActivitiesBox(
 @Composable
 fun ActivitiesBoxLayout(
     modifier: Modifier,
+//    activities: Activities
 ) {
 
     Card(
@@ -552,14 +556,14 @@ fun ActivitiesBoxLayout(
             ){
 //                Spacer(modifier = Modifier.height(10.dp))
                 CustomColorTitleText(
-                    text = "PTC 404",
+                    text = "activities.activity_title",
                     color = R.color.blacky,
                     20,
                     FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 CustomColorTitleText(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo nisi quis velit vestibulum, at hendrerit nulla finibus. Nulla facilisi. Vivamus ut magna vel risus scelerisque tincidunt. Proin euismod diam nec massa consectetur, ac aliquet justo tristique. Integer aliquam sapien nec libero consectetur, sit amet feugiat nunc ultricies.",
+                    text = "activities.activity_instructions",
                     color = R.color.blacky,
                     16,
                     FontWeight.Normal

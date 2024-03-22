@@ -55,7 +55,6 @@ fun ActivitiesScreen (navController: NavHostController){
         }
     }
 }
-@Preview
 @Composable
 fun ActsPrev() {
     ActivitiesScreen(navController = rememberNavController())

@@ -1,8 +1,8 @@
 package com.hackathon.trojan_horse_mobile.network.apimodel
 
 data class Activities(
-    val current_time: String,
-    val classrooms: String
+    val activity_title: String,
+    val activity_instructions: String
 )
 
 data class ActivitiesResponse(
