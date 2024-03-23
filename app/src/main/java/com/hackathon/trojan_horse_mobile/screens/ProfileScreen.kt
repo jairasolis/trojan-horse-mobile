@@ -63,8 +63,8 @@ fun ProfileScreen(navController: NavHostController) {
                 StaticProfile()
 
                 ProfileBox(
-                    name = "sdfsdf",
-                    email = "sdfsdf",
+                    name = "Joey Biden",
+                    email = "joeybiden@gmail.com",
                     studentId = "03-2223-043014",
                     section = "UP-FC1-BSIT2-03"
                 )

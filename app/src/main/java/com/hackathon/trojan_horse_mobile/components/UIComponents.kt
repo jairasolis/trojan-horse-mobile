@@ -570,25 +570,26 @@ fun Dropdown(
 // acts feedbox
 @Composable
 fun ActivitiesBox(
-//    activities: Activities,
-    ) {
+    activityTitles: List<String>,
+    activityInstructions: List<String>
+) {
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
-        items(10) {
+        items(activityTitles.size) { index ->
             ActivitiesBoxLayout(
-                modifier = Modifier
-//                activities = activities
+                activityTitle = activityTitles[index],
+                activityInstructions = activityInstructions[index]
             )
         }
     }
 }
+
 @Composable
 fun ActivitiesBoxLayout(
-    modifier: Modifier,
-//    activities: Activities
+    activityTitle: String,
+    activityInstructions: String
 ) {
-
     Card(
-        modifier = modifier
+        modifier = Modifier
             .padding(bottom = 15.dp)
             .fillMaxWidth()
             .wrapContentSize(),
@@ -602,32 +603,30 @@ fun ActivitiesBoxLayout(
             Modifier
                 .padding(10.dp)
                 .fillMaxSize(),
-        ){
-            Column (
+        ) {
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(20.dp),
                 horizontalAlignment = Alignment.Start
-            ){
-//                Spacer(modifier = Modifier.height(10.dp))
+            ) {
                 CustomColorTitleText(
-                    text = "activities.activity_title",
+                    text = activityTitle,
                     color = R.color.blacky,
                     20,
-                    FontWeight.Medium
+                    fontWeight = FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 CustomColorTitleText(
-                    text = "activities.activity_instructions",
+                    text = activityInstructions,
                     color = R.color.blacky,
                     16,
-                    FontWeight.Normal
+                    fontWeight = FontWeight.Normal
                 )
             }
         }
     }
 }
-
 
 @Composable
 fun ProfileBox(
