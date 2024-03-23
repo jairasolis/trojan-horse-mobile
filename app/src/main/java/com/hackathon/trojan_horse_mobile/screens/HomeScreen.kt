@@ -30,6 +30,16 @@ import com.hackathon.trojan_horse_mobile.components.Dropdown
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+    val texts = listOf(
+        "PTC 201",
+        "PTC 301",
+        "PTC 302",
+        "PTC 303",
+        "PTC 304",
+        "PTC 305",
+        "PTC 306"
+    )
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = colorResource(id = R.color.bg)
@@ -55,7 +65,7 @@ fun HomeScreen(navController: NavHostController) {
                 Dropdown()
             }
             Column {
-                AvailableClassroomsBox()
+                AvailableClassroomsBox(texts = texts)
             }
         }
     }

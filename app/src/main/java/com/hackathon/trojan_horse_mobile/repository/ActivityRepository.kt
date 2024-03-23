@@ -12,4 +12,5 @@ class ActivityRepository {
         return activityApiService.getActivities()
     }
 
+
 }

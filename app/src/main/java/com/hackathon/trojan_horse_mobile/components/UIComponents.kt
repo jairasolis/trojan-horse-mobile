@@ -376,22 +376,80 @@ fun CustomImageLogo(width: Int, height: Int, imageResourceID: Int, circleColor: 
 }
 
 // home feedbox
+//@Composable
+//fun AvailableClassroomsBox(
+//) {
+//    LazyColumn(contentPadding = PaddingValues(16.dp)) {
+//        items(10) {
+//            AvailableClassroomsBoxLayout(
+//                modifier = Modifier,
+//                isConditionTrue = false
+//            )
+//        }
+//    }
+//}
+//@Composable
+//fun AvailableClassroomsBoxLayout(
+//    modifier: Modifier,
+//    isConditionTrue: Boolean
+//) {
+//    val containerColor = if (isConditionTrue) colorResource(id = R.color.dark_red) else colorResource(
+//        id = R.color.dark_green
+//    )
+//    Card(
+//        modifier = modifier
+//            .padding(bottom = 15.dp)
+//            .fillMaxWidth()
+//            .height(240.dp),
+//        shape = RoundedCornerShape(10.dp),
+//        colors = CardDefaults.cardColors(
+//            containerColor = containerColor
+//        ),
+//        elevation = CardDefaults.cardElevation(5.dp),
+//    ) {
+//        Box(
+//            Modifier
+//                .padding(10.dp)
+//                .fillMaxSize(),
+//        ){
+//            Column (
+//                modifier = Modifier
+//                    .fillMaxSize()
+//                    .padding(20.dp),
+//                horizontalAlignment = Alignment.Start
+//            ){
+//                Spacer(modifier = Modifier.height(150.dp))
+//                CustomColorTitleText(
+//                    text = "PTC 404",
+//                    color = R.color.white,
+//                    22,
+//                    FontWeight.Normal
+//                )
+//            }
+//        }
+//    }
+//}
+
 @Composable
 fun AvailableClassroomsBox(
+    texts: List<String>
 ) {
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
-        items(10) {
+        items(texts.size) { index ->
             AvailableClassroomsBoxLayout(
                 modifier = Modifier,
-                isConditionTrue = false
+                isConditionTrue = false,
+                text = texts[index]
             )
         }
     }
 }
+
 @Composable
 fun AvailableClassroomsBoxLayout(
     modifier: Modifier,
-    isConditionTrue: Boolean
+    isConditionTrue: Boolean,
+    text: String
 ) {
     val containerColor = if (isConditionTrue) colorResource(id = R.color.dark_red) else colorResource(
         id = R.color.dark_green
@@ -420,7 +478,7 @@ fun AvailableClassroomsBoxLayout(
             ){
                 Spacer(modifier = Modifier.height(150.dp))
                 CustomColorTitleText(
-                    text = "PTC 404",
+                    text = text,
                     color = R.color.white,
                     22,
                     FontWeight.Normal
@@ -429,6 +487,7 @@ fun AvailableClassroomsBoxLayout(
         }
     }
 }
+
 
 @Composable
 fun CustomColorTitleText(
